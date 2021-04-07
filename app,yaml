@@ -11,4 +11,4 @@ env_variables:
 - url: /.*
   secure: always
   redirect_http_response_code: 301
-  script: auto
+  script: bot.js
