@@ -1,15 +1,15 @@
 {
-  "name": "DiscordBot",
+  "name": "discordbot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Discord Bot for MLSA Program",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
     "devStart": "nodemon bot.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "APratham",
+  "license": "MIT",
   "dependencies": {
     "@discordjs/opus": "^0.4.0",
     "axios": "^0.21.1",
@@ -23,5 +23,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APratham/MLSADiscordBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/APratham/MLSADiscordBot/issues"
+  },
+  "homepage": "https://github.com/APratham/MLSADiscordBot#readme"
 }
