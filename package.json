@@ -1,0 +1,27 @@
+{
+  "name": "DiscordBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "devStart": "nodemon bot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/opus": "^0.4.0",
+    "axios": "^0.21.1",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "ffmpeg-static": "^4.2.7",
+    "jquery": "^3.5.1",
+    "twit": "^2.2.11",
+    "ytdl-core": "^4.5.0",
+    "ytsearcher": "^1.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
