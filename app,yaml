@@ -1,0 +1,14 @@
+runtime: nodejs14 # or another supported version
+
+env_variables:
+  ACCESS_TOKENAPI: "${{ env.ACCESS_TOKENAPI }}"
+  ACCESS_TOKENAPI_SECRET: "${{ env.ACCESS_TOKENAPI_SECRET }}"
+  API_TOKEN_KEY: "${{ env.API_TOKEN_KEY }}"
+  BOT_TOKEN:  "${{ env.BOT_TOKEN }}"
+  CONSUMER_KEYAPI:  "${{ env.CONSUMER_KEYAPI }}"
+  CONSUMER_KEYAPI_SECRET:  "${{ env.CONSUMER_KEYAPI_SECRET }}"
+
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
