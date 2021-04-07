@@ -1,0 +1,16 @@
+name: Deploy to App Engine
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: Deploy to App Engine
+      uses: atRobertoFlores/gae_deploy_action@master
+      with:
+        service_account: ${{ secrets.SERVICE_ACCOUNT }}
+        project_name: ${{ secrets.PROJECT_NAME }}
