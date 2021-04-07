@@ -20,7 +20,7 @@ var T = new Twit({
   access_token:         process.env.ACCESS_TOKENAPI,
   access_token_secret:  process.env.ACCESS_TOKENAPI_SECRET,
 })
-//Variable declarations 
+//Variable declarations
 const eightBallArray = [
     "As I see it, yes.",
     "Ask again later.",
@@ -96,7 +96,7 @@ client.on('message', message => {
         message.reply('!playRandomSound or !prs, !noteThis "your note here", !milk, !taco, !mmm, !sure, !advice, !guitar, !tweet "Your tweet here", !BFGDivision, !paulGilb, !C418WetHands, !C418DryHands, !grimreaper, !rain, !ironManGuitarOnly, !senddog, !wedidit, !saveThatShit, !chunky, !eightball, !temperatureSports, !wockyBass, !weather "a city here", !coinFlip, !meow, !randomBetween "a number here", !wocky, !sports, !balls, and !ping')
         message.react("👍")
     } else if (theCommand === "!advice") {
-        giveAdvice(message)//test this 
+        giveAdvice(message)//test this
     } else if (message.content.startsWith("!noteThis")){
         getReadyToSaveToTextFile(message);
     } else if (theCommand == "!paulgilb") {
@@ -184,18 +184,18 @@ function eightBall(message){
 }
 function playSong(songName, message){
     // Checking if the message author is in a voice channel.
-    if (!message.member.voice.channel) 
+    if (!message.member.voice.channel)
         return message.reply("You must be in a voice channel.");
     // Checking if the bot is in a voice channel.
-    if (message.guild.me.voice.channel) 
+    if (message.guild.me.voice.channel)
         return message.reply("I'm already playing.");
     // Joining the channel and creating a VoiceConnection.
     message.member.voice.channel.join().then(VoiceConnection => {
         // Playing the music, and, on finish, disconnecting the bot.
-        VoiceConnection.play(songName).on("finish", () => 
+        VoiceConnection.play(songName).on("finish", () =>
             VoiceConnection.disconnect());
             message.reply("Playing...");
-    }).catch(err => 
+    }).catch(err =>
         console.log(err))
 };
 function dadBot(message){
@@ -217,7 +217,7 @@ function broBot(message){
 }
 function temperatureSports(message){
     axios.get("http://api.openweathermap.org/data/2.5/weather?q=lockport,us&units=imperial&APPID=" + process.env.API_TOKEN_KEY)
-        .then((res) => {  
+        .then((res) => {
             if(res.data.main.temp <= 45){
                 message.reply("The temperature outside is: " + res.data.main.temp + ", its pretty cold out I would stay in today and play some games");
             } else if(res.data.main.temp <=55 ){
@@ -248,13 +248,13 @@ function flipACoin(message){
         message.reply("Tails!", {
             files: [
                 "https://random-ize.com/coin-flip/us-quarter/us-quarter-back.jpg"
-            ] 
+            ]
         });
     }
 }
 function weatherSports(message){
     axios.get("http://api.openweathermap.org/data/2.5/weather?q=lockport,us&units=imperial&APPID=" + process.env.API_TOKEN_KEY)
-    .then((res) => {  
+    .then((res) => {
         if(res.data.wind.speed <= 3){
             message.reply("The wind today is almost nonexistant go outside! The temperature is " + res.data.main.temp + " degrees. The real feel is "
              + res.data.main.feels_like+  " degrees. The wind speed is " + res.data.wind.speed +
@@ -285,8 +285,8 @@ function giveWeather(message){
     const theCommand = args.shift().toLowerCase();
     const city = args[0];
     axios.get("http://api.openweathermap.org/data/2.5/weather?q=" + city + ",us&units=imperial&APPID=" + process.env.API_TOKEN_KEY)
-    .then((res) => { 
-        message.reply("The temperature is " + res.data.main.temp + " degrees. The real feel is " + res.data.main.feels_like + " degrees. The wind speed is " + res.data.wind.speed + "mph. The sky is " + res.data.weather[0].main.toLowerCase()+". Please, have a nice day.");   
+    .then((res) => {
+        message.reply("The temperature is " + res.data.main.temp + " degrees. The real feel is " + res.data.main.feels_like + " degrees. The wind speed is " + res.data.wind.speed + "mph. The sky is " + res.data.weather[0].main.toLowerCase()+". Please, have a nice day.");
     })
     .catch((err) => {
         console.error('ERR:', err)
@@ -296,10 +296,10 @@ function discBot(message){
     const empty = "";
     message.member.voice.channel.join().then(VoiceConnection => {
         // Playing the music, and, on finish, disconnecting the bot.
-        VoiceConnection.play(empty).on("finish", () => 
+        VoiceConnection.play(empty).on("finish", () =>
             VoiceConnection.disconnect());
             message.reply("Stopping...");
-    }).catch(err => 
+    }).catch(err =>
         console.log(err))
 }
 function checkTimeFunc(){
@@ -320,7 +320,7 @@ function greetings(){
         client.channels.cache.get(channelTwoID).send("Goodnight, everyone.");
     } else {
         console.log("checked after another hour its currently hour " + date.getHours());
-        setTimeout(checkTimeFunc, 3600000);//one hour 
+        setTimeout(checkTimeFunc, 3600000);//one hour
     }
 }
 function randomDog(message){
@@ -337,7 +337,7 @@ function randomCat(message){
     axios.get("https://api.thecatapi.com/v1/images/search")
     .then((res) => {
         //console.log('RES:', res.data[0].url)
-        message.channel.send(res.data[0].url)  
+        message.channel.send(res.data[0].url)
     })
     .catch((err) => {
         console.error('ERR:', err)
@@ -345,8 +345,8 @@ function randomCat(message){
     return " "
 }
 function makeTweets(theTweet){
-    //Not looping anything to post again, not getting banned again also PS twitter devs if youre reading this dont ban me 
-    //EDIT: it almost got banned again seperate reason though 
+    //Not looping anything to post again, not getting banned again also PS twitter devs if youre reading this dont ban me
+    //EDIT: it almost got banned again seperate reason though
     T.post('statuses/update', { status: theTweet }, function(err, data, response) {
         saveTweetID(data.id_str, theTweet);
         data = " ";
@@ -364,43 +364,43 @@ function saveTweetID(tweetID, theTweet){
       });
 }
 function readTweets(){
-    fs.stat('mynewfile1.txt', function (error, stats) { 
-        fs.open('mynewfile1.txt', "r", function (error, fd) { 
-            var buffer = new Buffer.alloc(stats.size); 
-            fs.read(fd, buffer, 0, buffer.length, 
-                null, function (error, bytesRead, buffer) { 
-                    var data = buffer.toString("utf8"); 
-                    console.log(data); 
+    fs.stat('mynewfile1.txt', function (error, stats) {
+        fs.open('mynewfile1.txt', "r", function (error, fd) {
+            var buffer = new Buffer.alloc(stats.size);
+            fs.read(fd, buffer, 0, buffer.length,
+                null, function (error, bytesRead, buffer) {
+                    var data = buffer.toString("utf8");
+                    console.log(data);
                     let arrayOfIds = [];
                     arrayOfIds.push(data);
                     console.log(arrayOfIds.length);//needs fix, seperate on _s each to get each item then make the array
-            }); 
+            });
         });
     });
 }
 function readNotes(){
-    fs.stat('newFile2.txt', function (error, stats) { 
-        fs.open('newFile2.txt', "r", function (error, fd) { 
-            var buffer = new Buffer.alloc(stats.size); 
-            fs.read(fd, buffer, 0, buffer.length, 
-                null, function (error, bytesRead, buffer) { 
-                    var data = buffer.toString("utf8"); 
-                    console.log(data); 
+    fs.stat('newFile2.txt', function (error, stats) {
+        fs.open('newFile2.txt', "r", function (error, fd) {
+            var buffer = new Buffer.alloc(stats.size);
+            fs.read(fd, buffer, 0, buffer.length,
+                null, function (error, bytesRead, buffer) {
+                    var data = buffer.toString("utf8");
+                    console.log(data);
                     let arrayOfIds = [];
                     arrayOfIds.push(data);
                     console.log(arrayOfIds.length);//needs fix, seperate on _s each to get each item then make the array
-            }); 
+            });
         });
     });
 }
 function testReadFileArray(){
-    fs.stat('testfile.txt', function (error, stats) { 
-        fs.open('testfile.txt', "r", function (error, fd) { 
-            var buffer = new Buffer.alloc(stats.size); 
-            fs.read(fd, buffer, 0, buffer.length, 
-                null, function (error, bytesRead, buffer) { 
-                    var data = buffer.toString("utf8"); 
-                    console.log(data); 
+    fs.stat('testfile.txt', function (error, stats) {
+        fs.open('testfile.txt', "r", function (error, fd) {
+            var buffer = new Buffer.alloc(stats.size);
+            fs.read(fd, buffer, 0, buffer.length,
+                null, function (error, bytesRead, buffer) {
+                    var data = buffer.toString("utf8");
+                    console.log(data);
                     let arrayOfIds = [];
                     arrayOfIds.push(data);
                     const randomNumber = Math.floor(Math.random() * arrayOfIds.length);
@@ -408,14 +408,14 @@ function testReadFileArray(){
                         console.log(arrayOfIds.slice().trim())
                     }
                     console.log(arrayOfIds.length);//needs fix, seperate on _s each to get each item then make the array
-            }); 
+            });
         });
     });
 }
 function randomBetween(message){
     if (message.content.startsWith("!randomBetween")){
         const args = message.content.slice().trim().split(/ +/g);
-        const command = args.shift().toLowerCase();   
+        const command = args.shift().toLowerCase();
         const randomNumber = Math.floor(Math.random()* args[0]);
         message.channel.send("You randomed between "+ args[0]+" and 0 to get "+ randomNumber);
     }
@@ -432,7 +432,7 @@ function ballsCounter(message){
         console.log("this is a test to see what its at " + data)
         //parseInt(data)
         //console.log(data)
-        newData = parseInt(data) 
+        newData = parseInt(data)
         //console.log(data)
         fs.appendFile('ballsCounter.txt', newData, function (err) {
             if (err) throw err;
@@ -451,7 +451,7 @@ function ballChecker(message){
     fs.readFile('ballsCounter.txt', function(err, data) {
         console.log(data);
         message.reply("The counter is at: " + data)
-        return data; 
+        return data;
     });
 }
 function giveAdvice(message){
@@ -493,7 +493,7 @@ function getReadyForTweet(message){
     for(i = 0; i < args.length; i++){
         stringer = stringer + " " + args[i];
     }
-    makeTweets(stringer); 
+    makeTweets(stringer);
     message.reply('You tweeted: '+ stringer);
 }
 client.login(process.env.BOT_TOKEN)
